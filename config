@@ -264,7 +264,3 @@ bindsym $mod+Shift+y exec --no-startup-id "systemctl hibernate"
 bindsym $mod+Shift+n exec --no-startup-id cmus-remote --next
 bindsym $mod+Shift+m exec bash -c 'cmus-remote --play && cmus-remote --prev'
 bindsym $mod+Shift+b exec --no-startup-id cmus-remote --pause
-
-# ============================================
-# == Application Launchers
-exec i3-msg 'workspace "'$ws1'"'
