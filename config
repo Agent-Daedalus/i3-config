@@ -80,49 +80,47 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # == Window Management Keybindings
 
 # Kill the currently focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+h kill
 
 # Launch Alacritty
-bindsym $mod+Return exec alacritty
+bindsym $mod+semicolon exec alacritty
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+o exec --no-startup-id dmenu_run
+bindsym $mod+Shift+o exec --no-startup-id i3-dmenu-desktop
 
 # Change focus directional
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+n focus left
+bindsym $mod+u focus up
+bindsym $mod+e focus down
+bindsym $mod+i focus right
 
 # Move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+n move left
+bindsym $mod+Shift+u move up
+bindsym $mod+Control+backspace move down
+bindsym $mod+Return move right
 
-# Split in horizontal orientation
-bindsym $mod+semicolon split h
-
-# Split in vertical orientation
-bindsym $mod+u split v
+# Splits in orientation
+# bindsym $mod+slash split h # horizontal
+# bindsym $mod+u split v
 
 # Enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+d fullscreen toggle
 
 # Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+g layout stacking
+bindsym $mod+q layout tabbed
+bindsym $mod+k layout toggle split
 
 # Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+space floating toggle
 
 # Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # Focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 
 # ============================================
@@ -137,20 +135,35 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
-# Switch to specific workspaces using Mod + number
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+set $wsA "A"
+set $wsB "B"
+set $wsC "C"
+set $wsD "D"
+set $wsE "E"
+set $wsF "F"
+set $wsG "G"
+set $wsH "H"
+
+# Switch to specific workspaces using Mod + letter (colemak layout)
+bindsym $mod+a workspace number $ws1
+bindsym $mod+r workspace number $ws2
+bindsym $mod+s workspace number $ws3
+bindsym $mod+t workspace number $ws4
+bindsym $mod+w workspace number $ws5
+bindsym $mod+f workspace number $ws6
+bindsym $mod+p workspace number $ws7
+bindsym $mod+b workspace number $ws8
+
+# Switch to specific workspaces using Mod + symbol
+bindsym $mod+0 workspace $wsA
+bindsym $mod+1 workspace $wsB
+bindsym $mod+2 workspace $wsC
+bindsym $mod+braceLeft workspace $wsD
+bindsym $mod+minus workspace $wsE
+bindsym $mod+plus workspace $wsF
+bindsym $mod+6 workspace $wsG
+bindsym $mod+7 workspace $wsH
 
 # Assign specific workspaces to monitor outputs for multi-monitor setups.
 workspace $ws1 output DP-4
@@ -163,16 +176,23 @@ workspace $ws5 output DP-4
 for_window [workspace=$ws2] layout stacking
 
 # Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+a move container to workspace number $ws1
+bindsym $mod+Shift+r move container to workspace number $ws2
+bindsym $mod+Shift+s move container to workspace number $ws3
+bindsym $mod+Shift+t move container to workspace number $ws4
+bindsym $mod+Shift+w move container to workspace number $ws5
+bindsym $mod+Shift+f move container to workspace number $ws6
+bindsym $mod+Shift+p move container to workspace number $ws7
+bindsym $mod+Shift+b move container to workspace number $ws8
+
+bindsym $mod+Shift+0 move container to workspace $wsA
+bindsym $mod+Shift+1 move container to workspace $wsB
+bindsym $mod+Shift+2 move container to workspace $wsC
+bindsym $mod+Shift+3 move container to workspace $wsD
+bindsym $mod+Shift+minus move container to workspace $wsE
+bindsym $mod+Shift+plus move container to workspace $wsF
+bindsym $mod+Shift+6 move container to workspace $wsG
+bindsym $mod+Shift+7 move container to workspace $wsH
 
 # Default workspaces for applications
 assign [class="Brave"] 2
@@ -188,10 +208,10 @@ assign [class="minecraft"] 5
 bindsym $mod+Shift+c reload
 
 # Restart i3 inplace (preserves layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q restart
 
 # Exit i3 (logs out of X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
 # ============================================
@@ -200,70 +220,70 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Resize window
 mode "resize" {
   # Resize window using HJKL keys
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
+  bindsym n resize shrink width 10 px or 10 ppt
+  bindsym u resize shrink height 10 px or 10 ppt
+  bindsym e resize grow height 10 px or 10 ppt
+  bindsym i resize grow width 10 px or 10 ppt
 
   # Back to normal: Enter or Escape or $mod+r
   bindsym Return mode "default"
   bindsym Escape mode "default"
-  bindsym $mod+r mode "default"
+  bindsym $mod+m mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+m mode "resize"
 
 
 # ============================================
 # == Application Launchers
 
 # Launch nvim in alacritty with class nvim (allows application targeting) 
-bindsym $mod+n exec alacritty --class nvim -e nvim
+bindsym $mod+colon exec alacritty --class nvim -e nvim
 
 # Launch vifm in alacritty with class vifm (allows application targeting) 
-bindsym $mod+v exec alacritty --class vifm -e vifm
+# bindsym $mod+tab exec alacritty --class vifm -e vifm
 
 # A mode for quickly launching apps
 set $quick_launcher Quick Launcher 
-bindsym $mod+o mode "$quick_launcher"
+bindsym $mod+l mode "$quick_launcher"
 mode "$quick_launcher" {
-    bindsym f exec firefox; 
-    bindsym t exec thunderbird; 
-    bindsym o exec obs; 
-    bindsym c exec --no-startup-id ~/.local/bin/launch_cmus.sh; 
-    bindsym g exec godot;
-    bindsym d exec dolphin; 
-    bindsym r exec /opt/resolve/bin/resolve; 
-    bindsym Shift+b exec com.bitwarden.desktop; 
-    bindsym b exec brave; 
+  bindsym f exec firefox; 
+  bindsym t exec thunderbird; 
+  bindsym o exec obs; 
+  bindsym c exec --no-startup-id ~/.local/bin/launch_cmus.sh; 
+  bindsym g exec godot;
+  bindsym d exec dolphin; 
+  bindsym r exec /opt/resolve/bin/resolve; 
+  bindsym Shift+b exec com.bitwarden.desktop; 
+  bindsym b exec brave; 
 
-    # Exit Quick Launcher mode.
-    bindsym Escape mode "default"
-    bindsym Return mode "default
+  # Exit Quick Launcher mode.
+  bindsym Escape mode "default"
+  bindsym Return mode "default
 }
 
 
 # ============================================
 # == Screenshot Keybindings
-bindsym $mod+Shift+s exec --no-startup-id scrot -s '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Screenshots/'
-bindsym $mod+Print exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Screenshots/'
-bindsym $mod+Shift+Print exec --no-startup-id scrot -u '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Screenshots/'
+bindsym $mod+bracketLeft exec --no-startup-id scrot -s '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Screenshots/'
+bindsym $mod+bracketRight exec --no-startup-id scrot '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Screenshots/'
+bindsym $mod+8 exec --no-startup-id scrot -u '%Y-%m-%d_%H-%M-%S.png' -e 'mv $f ~/Screenshots/'
 
 
 # ============================================
 # == System Power Keybindings
-bindsym $mod+Shift+i exec --no-startup-id ~/.local/bin/random_lockscreen.sh
-bindsym $mod+Shift+x exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to power off?' -b 'Yes, power off' 'systemctl poweroff'"
-bindsym $mod+Shift+u exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to reboot?' -b 'Yes, reboot' 'systemctl reboot'"
-bindsym $mod+y exec --no-startup-id "systemctl suspend"
-bindsym $mod+Shift+y exec --no-startup-id "systemctl hibernate"
+# bindsym $mod+Shift+l exec --no-startup-id ~/.local/bin/random_lockscreen.sh
+# bindsym $mod+Shift+x exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to power off?' -b 'Yes, power off' 'systemctl poweroff'"
+# bindsym $mod+Shift+u exec --no-startup-id "i3-nagbar -t warning -m 'Do you really want to reboot?' -b 'Yes, reboot' 'systemctl reboot'"
+# bindsym $mod+y exec --no-startup-id "systemctl suspend"
+# bindsym $mod+Shift+y exec --no-startup-id "systemctl hibernate"
 
 
 # ============================================
 # == CMUS (Music Player) Keybindings
-bindsym $mod+Shift+n exec --no-startup-id cmus-remote --next
-bindsym $mod+Shift+m exec bash -c 'cmus-remote --play && cmus-remote --prev'
-bindsym $mod+Shift+b exec --no-startup-id cmus-remote --pause
+bindsym $mod+parenRight exec --no-startup-id cmus-remote --next
+bindsym $mod+exclam exec bash -c 'cmus-remote --play && cmus-remote --prev'
+bindsym $mod+percent exec --no-startup-id cmus-remote --pause
 
 # ============================================
 # == Application Launchers
